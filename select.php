@@ -2,25 +2,13 @@
 require_once('funcs.php');
 
 //1. DB接続します
-//本番環境
-// $prod_db = "hatgpt_gs_kadai";
-// $prod_host = "mysql643.db.sakura.ne.jp";
-// $prod_id = "hatgpt";
-// $prod_pw = "qwerty123";
+$pdo = db_conn($prod_db, $prod_host, $prod_id, $prod_pw);
 
-$prod_db = "gs_db_kadai3";
-$prod_host = "localhost";
-$prod_id = "root";
-$prod_pw = "";
-
-//2. DB接続します
-$pdo = db_conn();
-
-//２．データ取得SQL作成
+//2. データ取得SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_bm_table");
 $status = $stmt->execute();
 
-//３．データ表示
+//3. データ表示
 $view = "";
 if ($status == false) {
     sql_error($stmt);
@@ -30,6 +18,8 @@ if ($status == false) {
         $view .= '<h3>' . h($result['name']) . '</h3>';
         $view .= '<p>URL: <a href="' . h($result['url']) . '" target="_blank">' . h($result['url']) . '</a></p>';
         $view .= '<p>コメント: ' . h($result['comment']) . '</p>';
+        $view .= '<a href="detail.php?id=' . h($result['id']) . '">編集</a> ';
+        $view .= '<a href="delete.php?id=' . h($result['id']) . '">削除</a>';
         $view .= '</div>';
     }
 }
