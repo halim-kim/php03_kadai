@@ -2,10 +2,6 @@
 require_once('funcs.php');
 
 //1. DB接続します
-$prod_db = "gs_db_kadai3";
-$prod_host = "localhost";
-$prod_id = "root";
-$prod_pw = "";
 $pdo = db_conn($prod_db, $prod_host, $prod_id, $prod_pw);
 
 //2. データ取得SQL作成
