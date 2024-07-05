@@ -5,14 +5,13 @@ require_once('funcs.php');
 $id = $_GET['id'];
 
 //2. DB接続します
-$prod_db = "gs_db_kadai3";
-$prod_host = "localhost";
-$prod_id = "root";
-$prod_pw = "";
 $pdo = db_conn($prod_db, $prod_host, $prod_id, $prod_pw);
 
 //3. データ削除SQL作成
-$stmt = $pdo->prepare("DELETE FROM gs_bm_table WHERE id=:id");
+$stmt = $pdo->prepare(
+    "DELETE FROM gs_bm_table WHERE id=:id"
+);
+
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $status = $stmt->execute();
 

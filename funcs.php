@@ -16,7 +16,6 @@ $prod_id = "root";
 $prod_pw = "";
 
 
-
 //DB接続
 function db_conn($prod_db, $prod_host, $prod_id, $prod_pw) {
   try {

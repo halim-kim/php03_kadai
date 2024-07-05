@@ -2,6 +2,10 @@
 require_once('funcs.php');
 
 //1. DB接続します
+$prod_db = "gs_db_kadai3";
+$prod_host = "localhost";
+$prod_id = "root";
+$prod_pw = "";
 $pdo = db_conn($prod_db, $prod_host, $prod_id, $prod_pw);
 
 //2. データ取得SQL作成
@@ -14,9 +18,15 @@ if ($status == false) {
     sql_error($stmt);
 } else {
     while ($result = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        // URLが 'http://' または 'https://' で始まっているか確認し、そうでない場合は 'http://' を追加
+        $url = $result['url'];
+        if (!preg_match('/^https?:\/\//', $url)) {
+            $url = 'http://' . $url;
+        }
+
         $view .= '<div class="bookmark-item">';
         $view .= '<h3>' . h($result['name']) . '</h3>';
-        $view .= '<p>URL: <a href="' . h($result['url']) . '" target="_blank">' . h($result['url']) . '</a></p>';
+        $view .= '<p>URL: <a href="' . h($url) . '" target="_blank">' . h($result['url']) . '</a></p>';
         $view .= '<p>コメント: ' . h($result['comment']) . '</p>';
         $view .= '<a href="detail.php?id=' . h($result['id']) . '">編集</a> ';
         $view .= '<a href="delete.php?id=' . h($result['id']) . '">削除</a>';

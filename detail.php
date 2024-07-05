@@ -8,11 +8,15 @@ $id = $_GET['id'];
 $pdo = db_conn($prod_db, $prod_host, $prod_id, $prod_pw);
 
 //3. データ取得SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE id=:id");
+$stmt = $pdo->prepare(
+    "SELECT * FROM gs_bm_table WHERE id=:id"
+);
+
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);
 $status = $stmt->execute();
 
 //4. データ表示
+$view = "";
 if ($status == false) {
     sql_error($stmt);
 } else {
@@ -35,6 +39,8 @@ if ($status == false) {
         </nav>
     </header>
 
+
+    
     <div class="container">
         <form method="post" action="update.php">
             <div class="jumbotron">

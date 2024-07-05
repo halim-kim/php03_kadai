@@ -16,7 +16,7 @@
     </header>
 
     <div class="container">
-        <!-- Main[Start] -->
+    <!-- method, action, 各inputのnameを確認してください。  -->
         <form method="post" action="insert.php">
             <div class="jumbotron">
                 <fieldset>
@@ -28,7 +28,7 @@
                 </fieldset>
             </div>
         </form>
-        <!-- Main[End] -->
+
     </div>
 </body>
 

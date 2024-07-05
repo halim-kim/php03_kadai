@@ -11,9 +11,14 @@ $comment = $_POST['comment'];
 $pdo = db_conn($prod_db, $prod_host, $prod_id, $prod_pw);
 
 //３．データ登録SQL作成
-$stmt = $pdo->prepare('INSERT INTO
-                gs_bm_table( id, name, url, comment, datetime )
-                VALUES( NULL, :name, :url, :comment, now() ) ');
+$stmt = $pdo->prepare(
+    'INSERT INTO
+                gs_bm_table( 
+                id, name, url, comment, datetime) 
+                
+    VALUES(
+                NULL, :name, :url, :comment, now() ) '
+                );
 
 //  2. バインド変数を用意
 $stmt->bindValue(':name', $name, PDO::PARAM_STR);
