@@ -4,11 +4,7 @@ function h($str){
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
   }
 
-//本番環境
-// $prod_db = "hatgpt_gs_kadai";
-// $prod_host = "mysql643.db.sakura.ne.jp";
-// $prod_id = "hatgpt";
-// $prod_pw = "qwerty123";
+
 
 $prod_db = "gs_db_kadai3";
 $prod_host = "localhost";
